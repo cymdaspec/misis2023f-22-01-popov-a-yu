@@ -14,14 +14,11 @@
 Уместными референсными приложениями с реализованным модулем таймлайна являются Adobe Premiere Pro и FL Studio
 
 ![image](https://github.com/cymdaspec/misis2023f-22-01-popov-a-yu/assets/90800517/dc39eda1-4109-4030-8cbb-e90ab738d4ea)
-<div align="center">
-  Плейлист в FL Studio
-</div> 
+<p align=center> Панель таймлайна в Premiere Pro
 
 ![image](https://github.com/cymdaspec/misis2023f-22-01-popov-a-yu/assets/90800517/4fcef28b-142f-408d-a1a4-e75bbfe03b5f)
-<div align="center">
-  Плейлист в FL Studio
-</div> 
+<p align=center> Плейлист в FL Studio
+
 
 # Шаблон таймлайна
 
