@@ -1,3 +1,10 @@
+# Folders
+.vs/
+bin/
+out/
+prj.cw/bin/
+prj.cw/out/
+
 # Prerequisites
 *.d
 
