@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 
+//Пример использования библиотеки
 
 const bool isInputConsole = false; //Ввод данных из командной строки/из файла в директории проекта
 const bool saveImage = true; //Cохранение в директорию проекта
@@ -87,7 +88,7 @@ int main()
 			std::cout << "Enter " << i + 2 << " timecode" << std::endl;
 			std::cin >> timeCode;
 
-			au.setTime(timeCode);
+			au.setTimecode(timeCode);
 			au.setEase(au.inputFormatEase(easeType));
 		}
 	}

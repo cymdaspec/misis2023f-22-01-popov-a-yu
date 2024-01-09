@@ -1,16 +1,21 @@
-﻿#include "automations_constructor.h";
+﻿/// \file Реализация методов, объявленных в .h файле
+///
 
-//Инструмент для создания автоматизаций (кусочно-заданной функции в пределах [0, 1])
+#include "automations_constructor.h";
+
 
 namespace vm = vimaker;
-
+/// <summary>
+/// 
+/// </summary>
+/// <returns></returns>
 ch::Sequence<float> vm::Automation::makeAutomation()
 {
 	ch::Sequence<float> result = ch::Sequence<float>(0);
 	for (int i = 1; i < vm::Automation::getAmountOfPoints(); i++)
 	{
 		result.then<ch::Hold>(0, 0.0f);
-		result.then<ch::RampTo>(1, vm::Automation::getTime(i) - vm::Automation::getTime(i-1), vm::Automation::getEase(i-1));
+		result.then<ch::RampTo>(1, vm::Automation::getTimecode(i) - vm::Automation::getTimecode(i-1), vm::Automation::getEase(i-1));
 	}
 	return result;
 };
@@ -20,7 +25,7 @@ int vm::Automation::getAmountOfPoints()
 	return vm::Automation::timecodes.size();
 };
 
-void vm::Automation::setTime(float time)
+void vm::Automation::setTimecode(float time)
 {
 	timecodes.push_back(time);
 }
@@ -30,7 +35,7 @@ void vm::Automation::setEase(std::function<float(float)> func)
 	eases.push_back(func);
 }
 
-float vm::Automation::getTime(int i)
+float vm::Automation::getTimecode(int i)
 {
 	return timecodes[i];
 }
@@ -91,11 +96,10 @@ void vm::Automation::inputFromFile(std::string filePath)
 	{
 		if (std::isdigit(currentWord[0]))
 		{
-			vm::Automation::setTime(stoi(currentWord));
+			vm::Automation::setTimecode(stoi(currentWord));
 		}
 		else
 		{
-			//std::cout << currentWord;
 			vm::Automation::setEase(vm::Automation::inputFormatEase(currentWord));
 		}
 	}

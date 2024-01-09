@@ -11,5 +11,19 @@ option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 set(CMAKE_GENERATOR "Ninja")
 
+
+find_package(Doxygen REQUIRED)
+
 add_subdirectory(prj.codeforces)
 add_subdirectory(prj.cw)
+
+if(DOXYGEN_FOUND)
+    set(DOXYGEN_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
+    add_custom_target(
+            documentation
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_INPUT}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            COMMENT "Generating documentation with Doxygen"
+            VERBATIM
+    )
+endif()

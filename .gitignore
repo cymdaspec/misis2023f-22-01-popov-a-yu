@@ -2,6 +2,8 @@
 .vs/
 bin/
 out/
+latex/
+html/
 prj.cw/bin/
 prj.cw/out/
 
