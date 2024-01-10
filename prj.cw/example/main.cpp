@@ -5,11 +5,21 @@
 #include <iostream>
 #include <fstream>
 
-//Пример использования библиотеки
+// Пример использования библиотеки Automations Constructor.
+// 
+// Входные параметры подаются через командную строку либо через .txt файл (в зависимости от isInputConsole)
+// Параметры считываются и на основе их создается последовательность ch::Sequence, 
+// с помощью которой строится график через библиотеку SFML.
+// 
+// Результатом работы программы является окно с построенным графиком автоматизации
+// и опциональное сохранение в .png (в зависимости от saveImage)
+// 
+// Тестовые данные уже введены в файл параметров и изображение для примера сгенерировано
 
-const bool isInputConsole = false; //Ввод данных из командной строки/из файла в директории проекта
-const bool saveImage = true; //Cохранение в директорию проекта
+const bool isInputConsole = false;
+const bool saveImage = true;
 
+//Отрисовка последовательности и опциональное сохранение изображения через SFML
 void drawAutomationGraph(int windowWidth, int windowHeight, const ch::Sequence<float> sequence, bool saveImage) {
 
 	sf::RenderTexture renderTexture;
@@ -68,11 +78,11 @@ void drawAutomationGraph(int windowWidth, int windowHeight, const ch::Sequence<f
 
 int main()
 {
-	vimaker::Automation au;
+	vimaker::Automation au; //Создание объекта автоматизации
 
-	int pointsAmount;
+	int pointsAmount; //Для консольного ввода
 	float timeCode;
-	std::string easeType; //Тип функции сглаживания
+	std::string easeType;
 
 	//Ввод данных
 	if (isInputConsole)
@@ -97,16 +107,24 @@ int main()
 		au.inputFromFile("../prj.cw/example/input.txt");
 	}
 
+	//Проверка правильности создания автоматизации
+	std::cout << "Automation key timecodes are: ";
+	for (int i = 0; i < au.getAmountOfPoints(); i++)
+	{
+		std::cout << au.getTimecode(i) << " ";
+	}
+	std::cout << "\n\n";
 
-	//Создание последовательности на основе входных данных
-	auto automation = au.makeAutomation();
+	//Построение последовательности sequence на основе созданной автоматизации au
+	choreograph::Sequence<float> sequence = au.makeSequence();
 
-	std::cout << "Sequence start value = " << automation.getValue(0) << "\n"; //Метод .getValue(time) работает более надёжно чем метотд .getStart(value)
-	std::cout << "Sequence end value = " << automation.getValue(automation.getDuration()) << "\n";
-	std::cout << "Amount of timecodes = " << au.getAmountOfPoints();
-	std::cout << "Sequence duration = " << automation.getDuration() << "\n";
+	//Проверка правильности построения последовательности sequence на основе созданной автоматизации au
+	std::cout << "Sequence start value = " << sequence.getValue(0) << "\n"; 
+	std::cout << "Sequence end value = " << sequence.getValue(sequence.getDuration()) << "\n";
+	std::cout << "Sequence duration = " << sequence.getDuration() << "\n";
 
-	//Визуализация заданной последовательности
-	drawAutomationGraph(800, 600, automation, saveImage);
+	//Визуализация построенной последовательности sequence
+	drawAutomationGraph(800, 600, sequence, saveImage);
+
 	return 0;
 }

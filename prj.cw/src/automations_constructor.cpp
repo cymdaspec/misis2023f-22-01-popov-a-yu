@@ -1,15 +1,11 @@
 ﻿/// \file Реализация методов, объявленных в .h файле
-///
 
 #include "automations_constructor.h";
 
 
 namespace vm = vimaker;
-/// <summary>
-/// 
-/// </summary>
-/// <returns></returns>
-ch::Sequence<float> vm::Automation::makeAutomation()
+
+ch::Sequence<float> vm::Automation::makeSequence()
 {
 	ch::Sequence<float> result = ch::Sequence<float>(0);
 	for (int i = 1; i < vm::Automation::getAmountOfPoints(); i++)
@@ -50,6 +46,7 @@ std::function<float(float)> vm::Automation::inputFormatEase(std::string ease)
 	std::unordered_map<std::string, std::function<float(float)>> eases_map;
 
 	eases_map["none"] = ch::easeNone;
+	eases_map["None"] = ch::easeNone;
 
 	eases_map["EaseInQuad"] = ch::easeInQuad;
 	eases_map["EaseOutQuad"] = ch::easeOutQuad;

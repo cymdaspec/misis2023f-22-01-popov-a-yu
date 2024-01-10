@@ -1,11 +1,12 @@
 # Folders
 .vs/
-bin/
-out/
-latex/
-html/
+docs/
 prj.cw/bin/
 prj.cw/out/
+/bin
+/out
+/installed
+prj.cw/example/automation_graph.png
 
 # Prerequisites
 *.d

@@ -45,6 +45,7 @@ namespace vimaker
 			/// функции. Грубо говоря таймкоды - это те значения t, где 
 			/// стыкуются составные функции.
 			/// Первый таймкод всегда будет находиться в нуле (начало отсчета)
+			/// Размер должен совпадать с размером eases
 
 			std::vector<float> timecodes = { 0 };
 
@@ -53,6 +54,7 @@ namespace vimaker
 			/// \details Функция сглаживания принимает и возвращает float (на вход подается 
 			/// момент времени t, на выход значение функции сглаживания от 0 до 1 в этот момент времени) 
 			/// Пример хранимой единицы: choreograph::EaseInOutQuad()
+			/// Размер должен совпадать с размером timecodes
 
 			std::vector<std::function<float(float)>> eases;
 
@@ -105,10 +107,10 @@ namespace vimaker
 			void inputFromFile(std::string filePath);
 
 			
-			/// \brief Метод создания автоматизации - ключевого элемента библиотеки Automations Constructor
-			/// \details Тип данных автоматизации -
-			///		последовательность (choreograph::Sequence<float>), состоящая из фраз (choreograph::Phrase<float>).
-			/// Правильно построенный sequence уже можно считать готовой единицей данных для работы с ними.
+			/// \brief Метод создания последовательности на основе автоматизации
+			/// \details Конвертация параметров созданной автоматизации в
+			///		последовательность (choreograph::Sequence<float>), состоящую из фраз (choreograph::Phrase<float>).
+			/// Правильно построенную последовательность уже можно считать готовой единицей данных для работы с ними.
 			/// Используемые сущности из библиотеки choreograph:
 			///		ch::Sequence, ch::Phrase (ch::RampTo, ch::Hold как виды Phrase)
 			/// Описание каждой из них есть в библиотеке choreograph
@@ -116,7 +118,7 @@ namespace vimaker
 			/// 
 			/// 
 		
-			ch::Sequence<float> makeAutomation();
+			ch::Sequence<float> makeSequence();
 
 			
 			/// \brief Преобразование текстового ввода в функции сглаживания из библиотеки choreograph через ключ-значение

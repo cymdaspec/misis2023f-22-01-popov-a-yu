@@ -1,1 +1,1 @@
-none 5 EaseInOutQuad EaseOutSine 15 18 EaseInQuint 40
+EaseOutCirc 5 none 13 EaseInSine 22 EaseOutQuint 33
