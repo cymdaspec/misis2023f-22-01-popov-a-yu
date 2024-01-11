@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.20)
 
-project(misis2023f-popov-a-yu-22-01 LANGUAGES CXX)
+project(misis2023f-22-01-popov-a-yu LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 

@@ -7,6 +7,7 @@ FetchContent_Declare(sfml
 	GIT_TAG 69ea0cd863aed1d4092b970b676924a716ff718b
 )
 
+ # TODO: настроить отдельное скачивание конфигурации sfml-graphics
 FetchContent_MakeAvailable(sfml)
 
 add_executable(main "main.cpp")
@@ -29,6 +30,10 @@ if(WIN32)
         VERBATIM)
 endif()
 
-install(DIRECTORY main
+install(TARGETS main
     DESTINATION ${CMAKE_INSTALL_PREFIX}
+    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Audio" EXCLUDE
+    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Network" EXCLUDE
+    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Audio.hpp" EXCLUDE
+    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Network.hpp" EXCLUDE
 )
