@@ -8,8 +8,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 SET(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/installed)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
-set(CMAKE_GENERATOR "Ninja")
-
 add_subdirectory(prj.codeforces)
 add_subdirectory(prj.cw)
 
