@@ -16,8 +16,8 @@
 // 
 // Тестовые данные уже введены в файл параметров и изображение для примера сгенерировано
 
-const bool isInputConsole = false;
-const bool saveImage = true;
+bool isInputConsole = false;
+bool saveImage = true;
 
 //Отрисовка последовательности и опциональное сохранение изображения через SFML
 void drawAutomationGraph(int windowWidth, int windowHeight, const ch::Sequence<float> sequence, bool saveImage) {
@@ -81,31 +81,38 @@ int main()
 	vimaker::Automation au; //Создание объекта автоматизации
 
 	int pointsAmount; //Для консольного ввода
-	float timeCode;
-	std::string easeType;
+	float currentTimeCode;
+	std::string currentEaseType;
 
+	std::cout << "Enter type of input you want to use\n 0. Text file\n 1. Console \n";
+	std::cin >> isInputConsole;
+	std::cout << "\n";
 	//Ввод данных
 	if (isInputConsole)
 	{
-		std::cout << "Enter amount of points" << std::endl;
+		std::cout << "Enter amount of points\n";
 		std::cin >> pointsAmount;
-		std::cout << "Timecode for first point is always 0" << std::endl;
+		std::cout << "\n";
+		std::cout << "Timecode for first point is always 0\n";
 
 		for (int i = 0; i < pointsAmount - 1; i++)
 		{
-			std::cout << "Enter " << i + 1 << " type of ease" << std::endl;
-			std::cin >> easeType;
-			std::cout << "Enter " << i + 2 << " timecode" << std::endl;
-			std::cin >> timeCode;
+			std::cout << "Enter " << i + 1 << " type of ease\n";
+			std::cin >> currentEaseType;
+			std::cout << "\n";
+			std::cout << "Enter " << i + 2 << " timecode\n";
+			std::cin >> currentTimeCode;
 
-			au.setTimecode(timeCode);
-			au.setEase(au.inputFormatEase(easeType));
+			au.setTimecode(currentTimeCode);
+			au.setEase(au.inputFormatEase(currentEaseType));
 		}
 	}
 	else
 	{
 		au.inputFromFile("../prj.cw/example/input.txt");
 	}
+
+	std::cout << "\n";
 
 	//Проверка правильности создания автоматизации
 	std::cout << "Automation key timecodes are: ";
@@ -122,9 +129,16 @@ int main()
 	std::cout << "Sequence start value = " << sequence.getValue(0) << "\n"; 
 	std::cout << "Sequence end value = " << sequence.getValue(sequence.getDuration()) << "\n";
 	std::cout << "Sequence duration = " << sequence.getDuration() << "\n";
+	
+	std::cout << "\n";
 
+	std::cout << "Would you like to save image after drawing?\n 0. Just draw\n 1. Save\n";
+	std::cin >> saveImage;
+	std::cout << "\n";
 	//Визуализация построенной последовательности sequence
 	drawAutomationGraph(800, 600, sequence, saveImage);
+	
+	std::cout << "Thanks for using!";
 
 	return 0;
 }

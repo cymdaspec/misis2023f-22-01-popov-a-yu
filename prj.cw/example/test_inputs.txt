@@ -1,0 +1,9 @@
+Ниже вы можете воспользоваться тестовыми данными для проверки работы библиотеки, 
+скопировав желаемую строчку (после двоеточия) и вставив ее в файл input.txt, либо в командную строку,
+если установлен соответствующий режим.
+
+input 1: EaseOutCirc 5 none 13 EaseInSine 22 EaseOutQuint 33
+input 2: EaseInOutSine 23 EaseOutExpo 27 EaseInExpo 30 EaseOutCirc 40
+input 3: EaseInQuint 5 EaseOutQuint 10 EaseInOutQuad 18
+input 4: EaseInOutCirc 3 None 6 EaseOutCirc 9 EaseInOutQuint 19 EaseOutExpo 25 EaseInSine 34
+input 5: EaseOutExpo 12 EaseInExpo 13 EaseOutSine 19 EaseInOutCirc 27 EaseInQuint 30
