@@ -33,8 +33,4 @@ target_compile_features(main PRIVATE cxx_std_17)
 
 install(TARGETS main #main - тестовый пример
     DESTINATION ${CMAKE_INSTALL_PREFIX}
-    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Audio" EXCLUDE
-    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Network" EXCLUDE
-    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Audio.hpp" EXCLUDE
-    #PATTERN "${CMAKE_INSTALL_PREFIX}/include/SMFL/Network.hpp" EXCLUDE
 )
