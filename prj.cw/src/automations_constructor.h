@@ -17,7 +17,7 @@
 
 
 
-namespace vimaker
+namespace au
 {
 
 	/// <summary>

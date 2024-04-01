@@ -3,45 +3,43 @@
 #include "automations_constructor.h";
 
 
-namespace vm = vimaker;
-
-ch::Sequence<float> vm::Automation::makeSequence()
+ch::Sequence<float> au::Automation::makeSequence()
 {
 	ch::Sequence<float> result = ch::Sequence<float>(0);
-	for (int i = 1; i < vm::Automation::getAmountOfPoints(); i++)
+	for (int i = 1; i < au::Automation::getAmountOfPoints(); i++)
 	{
 		result.then<ch::Hold>(0, 0.0f);
-		result.then<ch::RampTo>(1, vm::Automation::getTimecode(i) - vm::Automation::getTimecode(i-1), vm::Automation::getEase(i-1));
+		result.then<ch::RampTo>(1, au::Automation::getTimecode(i) - au::Automation::getTimecode(i-1), au::Automation::getEase(i-1));
 	}
 	return result;
 };
 
-int vm::Automation::getAmountOfPoints()
+int au::Automation::getAmountOfPoints()
 {
-	return vm::Automation::timecodes.size();
+	return au::Automation::timecodes.size();
 };
 
-void vm::Automation::setTimecode(float time)
+void au::Automation::setTimecode(float time)
 {
 	timecodes.push_back(time);
 }
 
-void vm::Automation::setEase(std::function<float(float)> func)
+void au::Automation::setEase(std::function<float(float)> func)
 {
 	eases.push_back(func);
 }
 
-float vm::Automation::getTimecode(int i)
+float au::Automation::getTimecode(int i)
 {
 	return timecodes[i];
 }
 
-std::function<float(float)> vm::Automation::getEase(int i)
+std::function<float(float)> au::Automation::getEase(int i)
 {
 	return eases[i];
 }
 
-std::function<float(float)> vm::Automation::inputFormatEase(std::string ease)
+std::function<float(float)> au::Automation::inputFormatEase(std::string ease)
 {
 	std::unordered_map<std::string, std::function<float(float)>> eases_map;
 
@@ -82,7 +80,7 @@ std::function<float(float)> vm::Automation::inputFormatEase(std::string ease)
 		throw std::invalid_argument("Received wrong ease input");
 }
 
-void vm::Automation::inputFromFile(std::string filePath)
+void au::Automation::inputFromFile(std::string filePath)
 {
 	std::fstream inputFileStream;
 	std::string currentWord;
@@ -93,11 +91,11 @@ void vm::Automation::inputFromFile(std::string filePath)
 	{
 		if (std::isdigit(currentWord[0]))
 		{
-			vm::Automation::setTimecode(stoi(currentWord));
+			au::Automation::setTimecode(stoi(currentWord));
 		}
 		else
 		{
-			vm::Automation::setEase(vm::Automation::inputFormatEase(currentWord));
+			au::Automation::setEase(au::Automation::inputFormatEase(currentWord));
 		}
 	}
 }

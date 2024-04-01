@@ -78,7 +78,7 @@ void drawAutomationGraph(int windowWidth, int windowHeight, const ch::Sequence<f
 
 int main()
 {
-	vimaker::Automation au; //Создание объекта автоматизации
+	au::Automation a; //Создание объекта автоматизации
 
 	int pointsAmount; //Для консольного ввода
 	float currentTimeCode;
@@ -103,27 +103,27 @@ int main()
 			std::cout << "Enter " << i + 2 << " timecode\n";
 			std::cin >> currentTimeCode;
 
-			au.setTimecode(currentTimeCode);
-			au.setEase(au.inputFormatEase(currentEaseType));
+			a.setTimecode(currentTimeCode);
+			a.setEase(a.inputFormatEase(currentEaseType));
 		}
 	}
 	else
 	{
-		au.inputFromFile("../prj.cw/example/input.txt");
+		a.inputFromFile("../prj.cw/example/input.txt");
 	}
 
 	std::cout << "\n";
 
 	//Проверка правильности создания автоматизации
 	std::cout << "Automation key timecodes are: ";
-	for (int i = 0; i < au.getAmountOfPoints(); i++)
+	for (int i = 0; i < a.getAmountOfPoints(); i++)
 	{
-		std::cout << au.getTimecode(i) << " ";
+		std::cout << a.getTimecode(i) << " ";
 	}
 	std::cout << "\n\n";
 
 	//Построение последовательности sequence на основе созданной автоматизации au
-	choreograph::Sequence<float> sequence = au.makeSequence();
+	choreograph::Sequence<float> sequence = a.makeSequence();
 
 	//Проверка правильности построения последовательности sequence на основе созданной автоматизации au
 	std::cout << "Sequence start value = " << sequence.getValue(0) << "\n"; 
