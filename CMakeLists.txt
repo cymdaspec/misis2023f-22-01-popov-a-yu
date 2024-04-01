@@ -21,7 +21,5 @@ if(DOXYGEN_FOUND)
     )
 endif()
 
-
 add_subdirectory(prj.codeforces)
 add_subdirectory(prj.cw)
-
